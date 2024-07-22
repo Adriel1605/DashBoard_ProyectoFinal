@@ -115,7 +115,7 @@ def update_data(value):
         df_4.columns = ['rating', 'usefulCount']
         val = int(value) / 100 if value is not None else 1
         X_scaled_df_NAN = drop_values(df_4, val)
-        data_imputada = X_scaled_df_NAN.interpolate(method="spline", order=1).ffill().bfill()
+        data_imputada = X_scaled_df_NAN.ffill().bfill()
         figure4 = px.line(template='plotly_dark')
         figure4.add_scatter(x=df_4['rating'], y=df_4['usefulCount'], mode='lines', name='DataFrame Original')
         figure4.add_scatter(x=data_imputada['rating'], y=data_imputada['usefulCount'], mode='lines', name='DataFrame Imputado')
